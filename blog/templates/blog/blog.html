@@ -1,0 +1,75 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %} Blog | La Caffettiera {% endblock %}
+{% block content %}
+
+<div class="container">
+  <h1 class="tituloH1">PUBLICACIONES</h1>
+  <div class="row">
+    <div class="col-12 col-lg-3">
+      <ul class="list-group">
+        <li class="list-group-item custom-item mb-2 selected"  category="all">
+          Todos
+        </li>
+        {% for cat in categorias reversed %}
+        <li class="list-group-item custom-item mb-2" category="{{cat.name}}">
+          {{cat.name}}
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <!-- <div class="col-12 col-lg-9 snap__padre">
+      <div class="row">
+        {% for obj in blogs reversed %}
+        <div class="col-12 col-md-6 mb-4 snap__hijo" *repeat*>
+          <div class="card bg-transparent-custom product-item" category="{{obj.categories.all|join:', '}}">
+            <img class="rounded-circle mx-auto d-block mt-3 recetas-img" src="{{obj.image.url}}" alt="Receta">
+            <div class="card-body">
+              <h5 class="card-title">{{obj.title}}</h5>
+              <p class="card-text">{{obj.content}}</p>
+              <p class="card-text">{{obj.content2}}</p>
+            </div>
+            <div class="card-footer">
+              <div>Publicado por <em><b>{{obj.author}}</b></em> el {{obj.published|date:"SHORT_DATE_FORMAT"}}</div>
+              <div class="recetas-footer">
+                <em><a href="#" class="link">{{obj.categories.all|join:", "}}</a>, <a href="#"
+                    class="link">Ofertas</a></em>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div> -->
+
+    <!-- MODIFICADO -->
+    <div class="col-12 col-lg-9 snap__padre">
+      {% for obj in blogs reversed %}
+      <div class="col-12 col-md-6 snap__hijo">
+        <div class="card bg-transparent-custom product-item product-item__blog mb-4" category="{{ obj.categories.all|join:', ' }}">
+          <div class="card-wrapper">
+            <!-- imagen -->
+            <img class="rounded-circle mx-auto d-block recetas-img" src="{{ obj.image.url }}" alt="Receta">
+            <!-- cuerpo de la tarjeta -->
+            <div class="card-body p-2">
+              <h5 class="card-title">{{ obj.title }}</h5>
+              <p class="card-text text-size__small">{{ obj.content }}</p>
+              <p class="card-text text-size__small">{{ obj.content2 }}</p>
+            </div> <!-- card-body -->
+            <!-- footer-->
+            <div class="card-footer">
+              <div>Publicado por <em><b>{{ obj.author }}</b></em> el {{ obj.published|date:"SHORT_DATE_FORMAT" }}</div>
+              <div class="recetas-footer">
+                <em><a href="#" class="link">{{ obj.categories.all|join:", "}}</a>, <a href="#" class="link">Ofertas</a></em>
+              </div>
+            </div> <!-- card-footer.fin -->
+          </div> <!-- card-wrapper.fin -->
+        </div> <!-- card bg-transparent-custom product-item.fin -->
+      </div>
+      {% endfor %}
+    </div>
+    <!-- MODIFICADO.FIN -->
+
+  </div>
+</div>
+{% endblock %}
