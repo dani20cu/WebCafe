@@ -1,0 +1,33 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %} Servicios {% endblock %}
+{% block content %}
+  <title>Servicios | La Caffettiera</title>
+  {% for obj in services reversed %}
+  <section class="page-section">
+      <div class="container">
+        <div class="product-item__custom">
+          <div class="product-item-title__wrapper">
+            <div class="product-item-title bg-faded">
+              <h2 class="section-heading mb-0">
+                <span class="section-heading-upper">
+                  {{obj.subtitle}}              
+                </span>
+                <span class="section-heading-lower">
+                  {{obj.title}}
+                </span>
+              </h2>
+            </div>
+          </div>
+          <img id="imageServicio" class="product-item-img product-item-img__custom img-fluid" src="{{obj.image.url}}" alt="">
+          <div class="product-item-description bg-faded">
+              <p class="">
+                {{obj.content}} 
+              </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    {% endfor %}
+    
+    {% endblock %}
